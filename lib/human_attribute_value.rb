@@ -30,7 +30,7 @@ module HumanAttributeValue
 
       defaults << :"values.#{attribute}.#{value}"
       defaults << options.delete(:default) if options[:default]
-      defaults << value.humanize
+      defaults << value.try(:humanize) || value
 
       options[:default] = defaults
       I18n.translate(defaults.shift, options)
